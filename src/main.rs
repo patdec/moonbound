@@ -13,6 +13,19 @@ async fn main() -> std::io::Result<()> {
     let routes = generate_route_list(App);
     println!("listening on http://{}", &addr);
 
+    use std::io;
+    use sqlx::{migrate, sqlite::SqlitePoolOptions};
+
+    let db_pool = SqlitePoolOptions::new()
+    .connect("sqlite:post:db")
+    .await
+    .map_err(|e| io::Error.new(io::ErrorKind::Other, e))?;
+
+    migrate!("./migrations")
+    .run(&db_pool)
+    .await
+    .expect("coukld not run sqlx migratio");
+
     HttpServer::new(move || {
         let leptos_options = &conf.leptos_options;
         let site_root = &leptos_options.site_root;

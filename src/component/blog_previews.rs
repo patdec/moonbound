@@ -2,7 +2,7 @@ use leptos::*;
 
 #[component]
 fn BlogDescription() -> impl IntoView {
-    view! {}
+    view! {<p></p>}
 }
 
 #[component]

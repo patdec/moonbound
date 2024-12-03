@@ -12,7 +12,6 @@ struct EditPostParams {
 
 #[component]
 pub fn EditPost() -> impl IntoView {
-    let params = use_params::<EditPostParams>();
     let (post, set_post) = create_signal(Post::new_empty());
     view! {
         <div class="flex h-screen">
