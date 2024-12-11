@@ -1,18 +1,18 @@
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+// use leptos_router::*;
 use serde::{Deserialize, Serialize};
 use crate::component::blog_post::BlogPost;
 
 use crate::model::blog_post::Post;
 
-#[derive(Params, PartialEq, Clone, Serialize, Deserialize, Debug)]
+#[derive(PartialEq, Clone, Serialize, Deserialize, Debug)]
 struct EditPostParams {
     post_id: Option<String>,
 }
 
 #[component]
 pub fn EditPost() -> impl IntoView {
-    let (post, set_post) = create_signal(Post::new_empty());
+    let (post, set_post) = signal(Post::new_empty());
     view! {
         <div class="flex h-screen">
             <div class="min-w-[50%] max-h-[90%] text-gray-200 dark:bg-gray-800 bg-gray-100 p-10 rounded-md">

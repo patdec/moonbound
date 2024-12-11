@@ -1,6 +1,6 @@
-use leptos::*;
+use leptos::prelude::*;
 use leptos_meta::*;
-use leptos_router::*;
+use leptos_router::components::*;
 
 use crate::component::{blog_previews::BlogPreviews, edit_post::EditPost, view_post::ViewPost};
 

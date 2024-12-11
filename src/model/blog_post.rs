@@ -1,7 +1,13 @@
+#[cfg(feature = "ssr")]
+use sqlx::types::chrono::{Local, NaiveDateTime};
+#[cfg(feature = "ssr")]
+use sqlx::FromRow;
+#[cfg(feature = "hydrate")]
 use chrono::{Local, NaiveDateTime};
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "ssr", derive(Clone, Serialize, Deserialize, Debug, FromRow))]
+#[cfg_attr(feature = "hydrate", derive(Clone, Serialize, Deserialize, Debug))]
 pub struct Post {
     pub id: String,
     pub dt: NaiveDateTime,
