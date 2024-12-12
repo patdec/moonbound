@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 use leptos_meta::*;
-use leptos_router::components::*;
+use leptos_router::{components::*, path};
 
 use crate::component::{blog_previews::BlogPreviews, edit_post::EditPost, view_post::ViewPost};
 
@@ -34,10 +34,10 @@ pub fn App() -> impl IntoView {
 
         <Router>
             <main class="bg-gray-700 text-gray-200 p-8 h-full">
-                <Routes>
-                    <Route path="" view=BlogPreviews />
-                    <Route path="/edit/:post_id?" view=EditPost />
-                    <Route path="/view/:post_id?" view=ViewPost />
+                <Routes fallback=|| "Not found">
+                    <Route path=path!("") view=BlogPreviews />
+                    <Route path=path!("/edit/:post_id?") view=EditPost />
+                    <Route path=path!("/view/:post_id?") view=ViewPost />
                 </Routes>
             </main>
         </Router>
